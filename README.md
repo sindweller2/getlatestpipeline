@@ -1,2 +1,2 @@
 # getlatestpipeline
- Simple app to get latest pipeline using GitLab API
+ Simple Flutter app to get latest pipeline using GitLab API
