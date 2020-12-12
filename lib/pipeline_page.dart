@@ -137,7 +137,7 @@ class PipelinePageState extends State<PipelinePage> {
   void copy() async {
     if (pipelineField.text.isNotEmpty) {
       ClipboardManager.copyToClipBoard(pipelineField.text).then((result) {
-        snakeBar(context, 'Copied to Clipboard');
+        snakeBar(context, 'Copied to Clipboard!');
       });
     }
   }
@@ -229,19 +229,29 @@ class PipelinePageState extends State<PipelinePage> {
             TextField(
               maxLines: 2,
               controller: pipelineField,
-              enabled: false,
-              decoration: InputDecoration(labelText: 'Pipeline'),
+              readOnly: true,
+              decoration: InputDecoration(
+                labelText: 'Pipeline',
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    copy();
+                  },
+                  child: Icon(
+                    Icons.copy,
+                  ),
+                ),
+              ),
             ),
             ButtonBar(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                RaisedButton.icon(
-                  icon: Icon(Icons.copy),
-                  label: Text('Copy to Clipboard'),
-                  onPressed: () {
-                    copy();
-                  },
-                ),
+                // RaisedButton.icon(
+                //   icon: Icon(Icons.copy),
+                //   label: Text('Copy to Clipboard'),
+                //   onPressed: () {
+                //     copy();
+                //   },
+                // ),
                 RaisedButton.icon(
                   icon: Icon(Icons.open_in_browser),
                   label: Text('Open in Browser'),
@@ -251,13 +261,13 @@ class PipelinePageState extends State<PipelinePage> {
                 ),
               ],
             ),
-            CupertinoButton.filled(
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              onPressed: () {
-                snakeBar(context, 'Under Construction!');
-              },
-              child: Text('Jobs List'),
-            )
+            // CupertinoButton.filled(
+            //   borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            //   onPressed: () {
+            //     snakeBar(context, 'Under Construction!');
+            //   },
+            //   child: Text('Jobs List'),
+            // )
           ]), // This trailing comma makes auto-formatting nicer for build methods.
         ),
       ),
